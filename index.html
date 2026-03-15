@@ -1,0 +1,72 @@
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Perfect Pitch Test</title>
+
+  <!-- PWA -->
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#ffd700">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="PitchTest">
+  <link rel="apple-touch-icon" href="icons/icon-192.png">
+
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="container">
+    <h1>Perfect Pitch Test</h1>
+    <div class="stats">
+      <p>Correct: <span id="correct">0</span>/30</p>
+      <p>Current Streak: <span id="streak">0</span></p>
+      <p>Daily Streak: <span id="dailyStreak">0</span> days</p>
+      <p>Streak Repairs: <span id="repairCount">5</span> left</p>
+    </div>
+    
+    <div class="game-area">
+      <div class="octave-selector">
+        <label>Octave Range:</label>
+        <div class="octave-controls">
+          <label><input type="checkbox" value="2" checked> 2</label>
+          <label><input type="checkbox" value="3" checked> 3</label>
+          <label><input type="checkbox" value="4" checked> 4</label>
+          <label><input type="checkbox" value="5" checked> 5</label>
+          <label><input type="checkbox" value="6" checked> 6</label>
+        </div>
+      </div>
+      <button id="repairStreak" class="repair-btn">Repair Streak</button>
+      <div class="button-container">
+        <button id="playNote" class="play-btn">Play Note</button>
+        <button id="replayNote" class="replay-btn" disabled>Replay Note</button>
+      </div>
+      
+      <div class="note-buttons">
+        <button data-note="C">C</button>
+        <button data-note="C#">C#</button>
+        <button data-note="D">D</button>
+        <button data-note="D#">D#</button>
+        <button data-note="E">E</button>
+        <button data-note="F">F</button>
+        <button data-note="F#">F#</button>
+        <button data-note="G">G</button>
+        <button data-note="G#">G#</button>
+        <button data-note="A">A</button>
+        <button data-note="A#">A#</button>
+        <button data-note="B">B</button>
+      </div>
+    </div>
+
+    <div id="feedback" class="feedback"></div>
+  </div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/tone/14.8.49/Tone.js"></script>
+  <script src="script.js"></script>
+  <script>
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('./sw.js')
+        .then(() => console.log('Service Worker registered'))
+        .catch(err => console.warn('SW registration failed:', err));
+    }
+  </script>
+</body>
+</html>
